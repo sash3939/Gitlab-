@@ -58,6 +58,8 @@
 2. Текст с `{ "message": "Already started" }` на `{ "message": "Running"}`.
 3. Issue поставить label: feature.
 
+<img width="960" alt="Issue" src="https://github.com/user-attachments/assets/8b8dceb0-3c41-435f-8147-d9d07d2f0f40">
+
 ### Developer
 
 Пришёл новый Issue на доработку, вам нужно:
@@ -66,6 +68,13 @@
 2. Внести изменения по тексту из задания.
 3. Подготовить Merge Request, влить необходимые изменения в `master`, проверить, что сборка прошла успешно.
 
+<img width="1006" alt="Update python-api" src="https://github.com/user-attachments/assets/ed568d8d-ce3f-4005-99b8-1966fd5aa3d7">
+
+<img width="992" alt="Merge1" src="https://github.com/user-attachments/assets/a71e91ec-5940-465c-b385-ee10b58462c3">
+
+<img width="979" alt="Merge2" src="https://github.com/user-attachments/assets/beb6f05e-8b59-4219-aa8a-5f7870040248">
+
+<img width="1033" alt="Merge3" src="https://github.com/user-attachments/assets/bc94d2e0-5000-4493-a964-fc264f76cbd3">
 
 ### Tester
 
@@ -74,14 +83,26 @@
 1. Поднять докер-контейнер с образом `python-api:latest` и проверить возврат метода на корректность.
 2. Закрыть Issue с комментарием об успешности прохождения, указав желаемый результат и фактически достигнутый.
 
+<img width="803" alt="Container python-api" src="https://github.com/user-attachments/assets/79596a6f-80d9-4bb0-83d8-051de3db5d60">
+
+<img width="283" alt="Curl" src="https://github.com/user-attachments/assets/2b027444-fa2e-42f3-b9f0-ed51931728ab">
+
+<img width="848" alt="Tetser done" src="https://github.com/user-attachments/assets/9a24cf0b-45cb-43c7-b3d2-d3143da49c96">
+
+<img width="791" alt="Tester Job" src="https://github.com/user-attachments/assets/845f631a-fcf5-4fb6-b058-d16b07416f7c">
+
 ## Итог
 
 В качестве ответа пришлите подробные скриншоты по каждому пункту задания:
 
-- файл gitlab-ci.yml;
-- Dockerfile; 
+- файл [gitlab-ci.yml](https://gitlab.com/sash3939/gitlab/-/blob/main/.gitlab-ci.yml?ref_type=heads);
+- [Dockerfile](https://gitlab.com/sash3939/gitlab/-/blob/main/Dockerfile?ref_type=heads); 
 - лог успешного выполнения пайплайна;
-- решённый Issue.
+  [build-job](https://gitlab.com/sash3939/gitlab/-/jobs/8002444379)
+  [deploy-job](https://gitlab.com/sash3939/gitlab/-/jobs/8002444381)
+  [tester](https://gitlab.com/sash3939/gitlab/-/jobs/8002444382)
+- решённый [Issue](https://gitlab.com/sash3939/gitlab/-/issues/8)
+- [Issue tester](https://gitlab.com/sash3939/gitlab/-/issues/9)
 
 ### Важно 
 После выполнения задания выключите и удалите все задействованные ресурсы в Yandex Cloud.
