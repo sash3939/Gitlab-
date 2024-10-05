@@ -1,92 +1,87 @@
-# Gitlab
+# Домашнее задание к занятию 12 «GitLab»
+
+## Подготовка к выполнению
 
 
-## Getting started
+1. Или подготовьте к работе Managed GitLab от yandex cloud [по инструкции](https://cloud.yandex.ru/docs/managed-gitlab/operations/instance/instance-create) .
+Или создайте виртуальную машину из публичного образа [по инструкции](https://cloud.yandex.ru/marketplace/products/yc/gitlab ) .
+2. Создайте виртуальную машину и установите на нее gitlab runner, подключите к вашему серверу gitlab  [по инструкции](https://docs.gitlab.com/runner/install/linux-repository.html) .
 
-To make it easy for you to get started with GitLab, here's a list of recommended next steps.
+<img width="1113" alt="Gitlab VM" src="https://github.com/user-attachments/assets/954449cb-f1fc-4661-9808-99396111742b">
 
-Already a pro? Just edit this README.md and make it your own. Want to make it easy? [Use the template at the bottom](#editing-this-readme)!
 
-## Add your files
+3. (* Необязательное задание повышенной сложности. )  Если вы уже знакомы с k8s попробуйте выполнить задание, запустив gitlab server и gitlab runner в k8s  [по инструкции](https://cloud.yandex.ru/docs/tutorials/infrastructure-management/gitlab-containers). 
 
-- [ ] [Create](https://docs.gitlab.com/ee/user/project/repository/web_editor.html#create-a-file) or [upload](https://docs.gitlab.com/ee/user/project/repository/web_editor.html#upload-a-file) files
-- [ ] [Add files using the command line](https://docs.gitlab.com/ee/gitlab-basics/add-file.html#add-a-file-using-the-command-line) or push an existing Git repository with the following command:
+4. Создайте свой новый проект.
 
-```
-cd existing_repo
-git remote add origin https://gitlab.com/sash3939/gitlab.git
-git branch -M main
-git push -uf origin main
-```
+<img width="774" alt="Project" src="https://github.com/user-attachments/assets/3be4bfd9-3c33-449e-8efc-3c9b48662d0a">
+   
+5. Создайте новый репозиторий в GitLab, наполните его [файлами](./repository).
 
-## Integrate with your tools
+<img width="806" alt="Add file in repo" src="https://github.com/user-attachments/assets/c9ad622a-b20c-44c6-b073-f8e147727756">
 
-- [ ] [Set up project integrations](https://gitlab.com/sash3939/gitlab/-/settings/integrations)
+6. Проект должен быть публичным, остальные настройки по желанию.
 
-## Collaborate with your team
+## Основная часть
 
-- [ ] [Invite team members and collaborators](https://docs.gitlab.com/ee/user/project/members/)
-- [ ] [Create a new merge request](https://docs.gitlab.com/ee/user/project/merge_requests/creating_merge_requests.html)
-- [ ] [Automatically close issues from merge requests](https://docs.gitlab.com/ee/user/project/issues/managing_issues.html#closing-issues-automatically)
-- [ ] [Enable merge request approvals](https://docs.gitlab.com/ee/user/project/merge_requests/approvals/)
-- [ ] [Set auto-merge](https://docs.gitlab.com/ee/user/project/merge_requests/merge_when_pipeline_succeeds.html)
+### DevOps
 
-## Test and Deploy
+В репозитории содержится код проекта на Python. Проект — RESTful API сервис. Ваша задача — автоматизировать сборку образа с выполнением python-скрипта:
 
-Use the built-in continuous integration in GitLab.
+1. Образ собирается на основе [centos:7](https://hub.docker.com/_/centos?tab=tags&page=1&ordering=last_updated).
+2. Python версии не ниже 3.7.
+3. Установлены зависимости: `flask` `flask-jsonpify` `flask-restful`.
+4. Создана директория `/python_api`.
+5. Скрипт из репозитория размещён в /python_api.
+6. Точка вызова: запуск скрипта.
+7. При комите в любую ветку должен собираться docker image с форматом имени hello:gitlab-$CI_COMMIT_SHORT_SHA . Образ должен быть выложен в Gitlab registry или yandex registry.   
 
-- [ ] [Get started with GitLab CI/CD](https://docs.gitlab.com/ee/ci/quick_start/index.html)
-- [ ] [Analyze your code for known vulnerabilities with Static Application Security Testing (SAST)](https://docs.gitlab.com/ee/user/application_security/sast/)
-- [ ] [Deploy to Kubernetes, Amazon EC2, or Amazon ECS using Auto Deploy](https://docs.gitlab.com/ee/topics/autodevops/requirements.html)
-- [ ] [Use pull-based deployments for improved Kubernetes management](https://docs.gitlab.com/ee/user/clusters/agent/)
-- [ ] [Set up protected environments](https://docs.gitlab.com/ee/ci/environments/protected_environments.html)
+<img width="460" alt="Registered runners" src="https://github.com/user-attachments/assets/5c00a33f-cbed-4d05-a8e7-8711aecd5d53">
 
-***
+<img width="774" alt="Project" src="https://github.com/user-attachments/assets/8b8b78e3-06f0-4a7b-8e2f-6cae31b7ddab">
 
-# Editing this README
+<img width="1030" alt="Container Registry" src="https://github.com/user-attachments/assets/0d3a153f-5c81-4186-970c-8b56f05f9948">
 
-When you're ready to make this README your own, just edit this file and use the handy template below (or feel free to structure it however you want - this is just a starting point!). Thanks to [makeareadme.com](https://www.makeareadme.com/) for this template.
+<img width="1004" alt="Gitlab-ci" src="https://github.com/user-attachments/assets/1a5f1adb-ac2c-4823-aa21-133de7e85ef4">
 
-## Suggestions for a good README
+[Репозиторий](https://gitlab.com/sash3939/gitlab)
 
-Every project is different, so consider which of these sections apply to yours. The sections used in the template are suggestions for most open source projects. Also keep in mind that while a README can be too long and detailed, too long is better than too short. If you think your README is too long, consider utilizing another form of documentation rather than cutting out information.
+[Registry](https://gitlab.com/sash3939/gitlab/container_registry)
 
-## Name
-Choose a self-explaining name for your project.
+[gitlab-ci](https://gitlab.com/sash3939/gitlab/-/blob/main/.gitlab-ci.yml?ref_type=heads)
 
-## Description
-Let people know what your project can do specifically. Provide context and add a link to any reference visitors might be unfamiliar with. A list of Features or a Background subsection can also be added here. If there are alternatives to your project, this is a good place to list differentiating factors.
+### Product Owner
 
-## Badges
-On some READMEs, you may see small images that convey metadata, such as whether or not all the tests are passing for the project. You can use Shields to add some to your README. Many services also have instructions for adding a badge.
+Вашему проекту нужна бизнесовая доработка: нужно поменять JSON ответа на вызов метода GET `/rest/api/get_info`, необходимо создать Issue в котором указать:
 
-## Visuals
-Depending on what you are making, it can be a good idea to include screenshots or even a video (you'll frequently see GIFs rather than actual videos). Tools like ttygif can help, but check out Asciinema for a more sophisticated method.
+1. Какой метод необходимо исправить.
+2. Текст с `{ "message": "Already started" }` на `{ "message": "Running"}`.
+3. Issue поставить label: feature.
 
-## Installation
-Within a particular ecosystem, there may be a common way of installing things, such as using Yarn, NuGet, or Homebrew. However, consider the possibility that whoever is reading your README is a novice and would like more guidance. Listing specific steps helps remove ambiguity and gets people to using your project as quickly as possible. If it only runs in a specific context like a particular programming language version or operating system or has dependencies that have to be installed manually, also add a Requirements subsection.
+### Developer
 
-## Usage
-Use examples liberally, and show the expected output if you can. It's helpful to have inline the smallest example of usage that you can demonstrate, while providing links to more sophisticated examples if they are too long to reasonably include in the README.
+Пришёл новый Issue на доработку, вам нужно:
 
-## Support
-Tell people where they can go to for help. It can be any combination of an issue tracker, a chat room, an email address, etc.
+1. Создать отдельную ветку, связанную с этим Issue.
+2. Внести изменения по тексту из задания.
+3. Подготовить Merge Request, влить необходимые изменения в `master`, проверить, что сборка прошла успешно.
 
-## Roadmap
-If you have ideas for releases in the future, it is a good idea to list them in the README.
 
-## Contributing
-State if you are open to contributions and what your requirements are for accepting them.
+### Tester
 
-For people who want to make changes to your project, it's helpful to have some documentation on how to get started. Perhaps there is a script that they should run or some environment variables that they need to set. Make these steps explicit. These instructions could also be useful to your future self.
+Разработчики выполнили новый Issue, необходимо проверить валидность изменений:
 
-You can also document commands to lint the code or run tests. These steps help to ensure high code quality and reduce the likelihood that the changes inadvertently break something. Having instructions for running tests is especially helpful if it requires external setup, such as starting a Selenium server for testing in a browser.
+1. Поднять докер-контейнер с образом `python-api:latest` и проверить возврат метода на корректность.
+2. Закрыть Issue с комментарием об успешности прохождения, указав желаемый результат и фактически достигнутый.
 
-## Authors and acknowledgment
-Show your appreciation to those who have contributed to the project.
+## Итог
 
-## License
-For open source projects, say how it is licensed.
+В качестве ответа пришлите подробные скриншоты по каждому пункту задания:
 
-## Project status
-If you have run out of energy or time for your project, put a note at the top of the README saying that development has slowed down or stopped completely. Someone may choose to fork your project or volunteer to step in as a maintainer or owner, allowing your project to keep going. You can also make an explicit request for maintainers.
+- файл gitlab-ci.yml;
+- Dockerfile; 
+- лог успешного выполнения пайплайна;
+- решённый Issue.
+
+### Важно 
+После выполнения задания выключите и удалите все задействованные ресурсы в Yandex Cloud.
